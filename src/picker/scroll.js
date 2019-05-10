@@ -102,7 +102,12 @@ $.fn.scroll = function (options) {
     const $this = $(this);
 
     $this.find('.weui-picker__content').html(items);
-
+    const [el] = $this.find('.weui-picker__item');
+    if (el) {
+        const rowHeight = window.getComputedStyle(el)['height'];
+        defaults.rowHeight = parseInt(rowHeight);
+        console.log(defaults.rowHeight, rowHeight);
+    }
     let $scrollable = $this.find(defaults.scrollable);        // 可滚动的元素
     let start;                                                  // 保存开始按下的位置
     let end;                                                    // 保存结束时的位置
